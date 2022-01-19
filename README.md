@@ -1,5 +1,4 @@
-OpenFaaS Gin Demo
-===
+# OpenFaaS Gin Demo
 
 - prod
 
@@ -16,6 +15,14 @@ faas-cli secret create openfaas-postgresql-password --from-file openfaas-postgre
 faas-cli up -f demo.yml
 ```
 
+now test api in
+```
+http://localhost:31112/function/demo/record/1/
+```
+
+
+---
+
 - dev
 
 ```bash
@@ -30,4 +37,9 @@ edit config
 cd ..
 export run_mode=debug
 go run main.go
+```
+
+now test api in
+```
+http://localhost:8000/record/1/
 ```
