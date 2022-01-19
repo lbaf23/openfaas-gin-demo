@@ -26,7 +26,7 @@ func Setup() {
 		Config.RunMode = "release"
 		Config.User = os.Getenv("postgres_user")
 		Config.Host = os.Getenv("postgres_host")
-		Config.Password = getSecret("openfaas-restful-demo-db-password")
+		Config.Password = getSecret("openfaas-postgresql-password")
 		Config.Port = os.Getenv("postgres_port")
 		Config.DBName = os.Getenv("postgres_db")
 		Config.SSLMode = os.Getenv("postgres_sslmode")
