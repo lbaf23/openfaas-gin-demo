@@ -1,8 +1,17 @@
 # OpenFaaS Gin Demo
 
-- prod
+- dockerfile openfaas template
+- gin
+
+
+## prod
 
 use faas secrets
+
+
+```bash
+faas-cli tempplate pull
+```
 
 ```bash
 vim openfaas-postgresql-password.txt
@@ -21,9 +30,8 @@ http://localhost:31112/function/demo/record/1/
 ```
 
 
----
 
-- dev
+## dev
 
 ```bash
 cd demo/conf
