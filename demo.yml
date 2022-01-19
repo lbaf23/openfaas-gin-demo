@@ -1,0 +1,21 @@
+version: 1.0
+provider:
+  name: openfaas
+  gateway: http://localhost:31112
+functions:
+  demo:
+    lang: dockerfile
+    handler: ./demo
+    image: lbaf23/demo:latest
+    build_args:
+      GO111MODULE: on
+    environment:
+      run_mode: release
+      postgres_db: demo
+      postgres_port: 5432
+      postgres_host: postgresql.default.svc.cluster.local
+      postgres_user: postgres
+      postgres_sslmode: disable
+    secrets:
+      - openfaas-postgresql-password
+
