@@ -1,7 +1,7 @@
 package models
 
 import (
-	"demo/setting"
+	"demo/settings"
 	"fmt"
 	"log"
 
@@ -23,12 +23,12 @@ func Setup() {
 	var err error
 
 	connStr := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=%s TimeZone=Asia/ShangHai",
-		setting.Config.Host,
-		setting.Config.User,
-		setting.Config.Password,
-		setting.Config.DBName,
-		setting.Config.Port,
-		setting.Config.SSLMode)
+		settings.Config.Host,
+		settings.Config.User,
+		settings.Config.Password,
+		settings.Config.DBName,
+		settings.Config.Port,
+		settings.Config.SSLMode)
 
 	db, err = gorm.Open(postgres.Open(connStr))
 

@@ -3,14 +3,14 @@ package main
 import (
 	"demo/models"
 	"demo/routers"
-	"demo/setting"
+	"demo/settings"
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
 
 func init() {
-	setting.Setup()
+	settings.Setup()
 	models.Setup()
 }
 
@@ -22,7 +22,7 @@ func main() {
 		AllowCredentials: true,
 	})
 
-	gin.SetMode(setting.Config.RunMode)
+	gin.SetMode(settings.Config.RunMode)
 
 	r.Use(corsMiddleware)
 	r.Run(":8000")
