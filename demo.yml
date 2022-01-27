@@ -6,7 +6,7 @@ functions:
   demo:
     lang: dockerfile
     handler: ./demo
-    image: lbaf23/demo:latest
+    image: lbaf23/demo:1.0.0
     build_args:
       GO111MODULE: on
     environment:
@@ -17,5 +17,5 @@ functions:
       postgres_user: postgres
       postgres_sslmode: disable
     secrets:
-      - openfaas-postgresql-password
+      - openfaas-db-password
 

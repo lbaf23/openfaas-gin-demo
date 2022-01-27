@@ -6,9 +6,9 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func InitRouter() *gin.Engine {
+func InitRouter(mode string) *gin.Engine {
+	gin.SetMode(mode)
 	router := gin.New()
-
 	recordGroup := router.Group("/record/:id")
 	recordGroup.Use()
 	{

@@ -10,24 +10,24 @@ import (
 )
 
 type config struct {
-	RunMode  string
-	User     string
-	Host     string
-	Password string
-	Port     string
-	DBName   string
-	SSLMode  string
+	RunMode    string
+	DBUser     string
+	DBHost     string
+	DBPassword string
+	DBPort     string
+	DBName     string
+	SSLMode    string
 }
 
 var Config = &config{}
 
 func Setup() {
 	if os.Getenv("run_mode") == "release" {
-		Config.RunMode = "release"
-		Config.User = os.Getenv("postgres_user")
-		Config.Host = os.Getenv("postgres_host")
-		Config.Password = getSecret("openfaas-postgresql-password")
-		Config.Port = os.Getenv("postgres_port")
+		Config.RunMode = os.Getenv("run_mode")
+		Config.DBUser = os.Getenv("postgres_user")
+		Config.DBHost = os.Getenv("postgres_host")
+		Config.DBPassword = loadSecret("openfaas-db-password")
+		Config.DBPort = os.Getenv("postgres_port")
 		Config.DBName = os.Getenv("postgres_db")
 		Config.SSLMode = os.Getenv("postgres_sslmode")
 	} else if os.Getenv("run_mode") == "debug" {
@@ -37,7 +37,7 @@ func Setup() {
 	}
 }
 
-func getSecret(secret string) string {
+func loadSecret(secret string) string {
 	secretfile, _ := ioutil.ReadFile("/var/openfaas/secrets/" + secret)
 	password := strings.Split(string(secretfile), "\n")[0]
 	return password
@@ -49,7 +49,7 @@ func loadConfigFile(f string) {
 
 	cfg, err = ini.Load(f)
 	if err != nil {
-		log.Fatalf("setting.Setup, fail to parse 'conf/app.ini': %v", err)
+		log.Fatalf("setting.Setup, fail to parse '%s': %v", f, err)
 	}
 	err = cfg.Section("config").MapTo(Config)
 	if err != nil {

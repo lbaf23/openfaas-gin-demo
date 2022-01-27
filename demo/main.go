@@ -15,7 +15,7 @@ func init() {
 }
 
 func main() {
-	r := routers.InitRouter()
+	r := routers.InitRouter(settings.Config.RunMode)
 	corsMiddleware := cors.New(cors.Config{
 		AllowAllOrigins:  true,
 		AllowHeaders:     []string{"*"},
